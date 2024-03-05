@@ -1,6 +1,6 @@
 # Steps to run the application
 
-Make sure node has been installed.
+Make sure node is installed.
 
 1. Clone the repository
 
