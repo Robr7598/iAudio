@@ -22,6 +22,14 @@ npm install
 npm run dev
 ```
 
+Optional: If an error like "@material or @emotion libraries" are not installed is thrown:
+
+```
+npm install @mui/material @emotion/react @emotion/styled @material-ui/core/
+```
+
+Intermittently, one can hit issue w.r.t material UI libraries.
+
 # Tech stack used:
 
 Vite, Javascript, React/HTML, MaterialUI, ReactDropzone, React-DND, TailwindCSS
