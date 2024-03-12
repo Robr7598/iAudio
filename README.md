@@ -14,10 +14,15 @@ npm config set legacy-peer-deps true
 
 ```
 npm install
+```
+
+4. Install MaterialUI dependencies:
+
+```
 npm install @mui/material @emotion/react @emotion/styled @material-ui/core/
 ```
 
-4. Run the application:
+5. Run the application:
 
 ```
 npm run dev
