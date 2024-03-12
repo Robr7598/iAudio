@@ -19,7 +19,7 @@ npm install
 4. Install MaterialUI dependencies:
 
 ```
-npm install @mui/material @emotion/react @emotion/styled @material-ui/core/
+npm install @mui/material @emotion/react @emotion/styled
 ```
 
 5. Run the application:
