@@ -2,14 +2,15 @@ import { useRef, useContext } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { FileContext } from "../contexts/FileContext";
-import { TrackContext } from "../contexts/TrackContext";
+import { CurrentContext } from "../contexts/CurrentContext";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AudioPlayerBg from "../assets/AudioPlayerBg.jpeg";
 
 const Card = ({ id, name, index, moveFile }) => {
   const { playlist, setPlaylist } = useContext(FileContext);
-  const { currentTrackIndex } = useContext(TrackContext);
+  const { currentTrackIndex, setCurrentTrackIndex } =
+    useContext(CurrentContext);
   const ref = useRef(null);
   const [, drop] = useDrop({
     accept: "audio/mpeg",
@@ -58,10 +59,14 @@ const Card = ({ id, name, index, moveFile }) => {
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
 
-  const handleDelete = (e, id) => {
+  const handleDelete = (e, index) => {
     e.preventDefault();
-    const newPlaylist = playlist.filter((audio) => audio.id !== id);
-    setPlaylist(newPlaylist);
+    playlist.splice(index, 1);
+    setPlaylist([...playlist]);
+
+    if (index === currentTrackIndex) {
+      setCurrentTrackIndex(0);
+    }
   };
 
   return (
@@ -89,7 +94,7 @@ const Card = ({ id, name, index, moveFile }) => {
         }}
       >
         {name}
-        <IconButton onClick={(e) => handleDelete(e, id)}>
+        <IconButton onClick={(e) => handleDelete(e, index)}>
           <DeleteIcon variant="large" />
         </IconButton>
       </div>
@@ -112,12 +117,12 @@ const List = () => {
   return (
     <div className="flex flex-row">
       {playlist.length > 0 &&
-        playlist.map((audio, index) => {
+        playlist.map(({ id, name }, index) => {
           return (
             <Card
               key={index}
-              id={audio.id}
-              name={audio.name}
+              id={id}
+              name={name}
               index={index}
               moveFile={moveFile}
             ></Card>

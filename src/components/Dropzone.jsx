@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 const Dropzone = ({ children, onDrop, label, clickEnabled = false }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: "audio/mpeg",
+    accept: { "audio/*": [".mp3"] },
     maxFiles: 20,
     noClick: !clickEnabled,
   });
@@ -17,7 +17,7 @@ const Dropzone = ({ children, onDrop, label, clickEnabled = false }) => {
           Drop the MP3 file here...
         </Typography>
       ) : (
-        <Typography Typography variant="h4" align="center">
+        <Typography variant="h4" align="center">
           {label}
         </Typography>
       )}

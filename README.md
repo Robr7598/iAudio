@@ -14,6 +14,7 @@ npm config set legacy-peer-deps true
 
 ```
 npm install
+npm install @mui/material @emotion/react @emotion/styled @material-ui/core/
 ```
 
 4. Run the application:
@@ -22,21 +23,17 @@ npm install
 npm run dev
 ```
 
-Optional: If an error like "@material or @emotion libraries" are not installed is thrown:
-
-```
-npm install @mui/material @emotion/react @emotion/styled @material-ui/core/
-```
-
-Intermittently, one can hit issue w.r.t material UI libraries.
-
 # Tech stack used:
 
 Vite, Javascript, React/HTML, MaterialUI, ReactDropzone, React-DND, TailwindCSS
 
-# Approach:
+# Brief explanation:
 
-The react application(iAudio) will have 3 major components, namely,
+Projects Tab:
+
+- This is where we can create, edit, and delete projects. Creating a new project or editing an existing project will open the media section.
+
+Media Tab:
 
 - Import Section: This section is like a file store where we can upload/drag-drop audio files from our system file browser. Files can be added, deleted, and re-used for the playback timeline.
 

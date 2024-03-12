@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext, useRef, useMemo } from "react";
 import { FileContext } from "../contexts/FileContext";
-import { TrackContext } from "../contexts/TrackContext";
+import { CurrentContext } from "../contexts/CurrentContext";
 import Typography from "@mui/material/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
@@ -10,7 +10,8 @@ import SkipNextRoundedIcon from "@material-ui/icons/SkipNextRounded";
 
 const AudioPlayer = () => {
   const { playlist } = useContext(FileContext);
-  const { currentTrackIndex, setCurrentTrackIndex } = useContext(TrackContext);
+  const { currentTrackIndex, setCurrentTrackIndex } =
+    useContext(CurrentContext);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const audioRef = useRef(null);
@@ -25,10 +26,19 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     audioRef.current.src = playlist[currentTrackIndex]?.src;
-    if (isPlaying) {
+    if (isPlaying && audioRef.current.src) {
       audioRef.current.play();
+    } else {
+      setIsPlaying(false);
     }
   }, [currentTrackIndex]);
+
+  useEffect(() => {
+    if (playlist.length === 0) {
+      setIsPlaying(false);
+      audioRef.current.src = null;
+    }
+  }, [playlist]);
 
   const togglePlay = () => {
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
@@ -36,7 +46,7 @@ const AudioPlayer = () => {
 
   const playPrevious = () => {
     let newIndex = currentTrackIndex - 1;
-    if (newIndex < 0) {
+    if (newIndex <= 0) {
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
       }
@@ -48,7 +58,7 @@ const AudioPlayer = () => {
 
   const playNext = () => {
     let newIndex = currentTrackIndex + 1;
-    if (newIndex === playlist.length) {
+    if (newIndex >= playlist.length) {
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
       }
@@ -57,28 +67,6 @@ const AudioPlayer = () => {
     }
     setCurrentTrackIndex(newIndex);
   };
-
-  // useEffect(() => {
-  //   let total = 0;
-  //   playlist.forEach((audio) => {
-  //     total += audio.duration;
-  //   });
-  //   setTotalTime(total);
-  // }, [playlist]);
-
-  // const formatTime = (seconds) => {
-  //   const minutes = Math.floor(seconds / 60);
-  //   const remainingSeconds = seconds % 60;
-  //   return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-  // };
-
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     setCurrentTime((prevTime) => prevTime + 1);
-  //   }, 1000);
-
-  //   return () => clearInterval(intervalId);
-  // }, []);
 
   return (
     <div className="border-2 rounded border-black min-h-100 bg-pink-400 min-w-[600px] flex flex-col justify-between">
