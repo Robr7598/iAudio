@@ -51,7 +51,6 @@ const App = () => {
           style={{
             backgroundColor: tab === MEDIA_TAB ? "grey" : "blue",
           }}
-          // disabled={projects?.length === 0}
           onClick={(e) => {
             onTabClick(e, MEDIA_TAB);
           }}
