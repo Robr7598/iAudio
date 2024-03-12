@@ -1,6 +1,7 @@
 import { useDropzone } from "react-dropzone";
 import Typography from "@mui/material/Typography";
 
+// Used for handling drag-drop/upload of audio files
 const Dropzone = ({ children, onDrop, label, clickEnabled = false }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,

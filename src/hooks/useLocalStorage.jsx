@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// Abstracts the interaction with browser's local storage
 const useLocalStorage = (key, defaultValue) => {
   const [localStorageValue, setLocalStorageValue] = useState(() => {
     try {

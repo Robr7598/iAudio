@@ -12,6 +12,7 @@ const uniqueId = () => parseInt(Date.now() * Math.random()).toString();
 
 const LOCAL_STORAGE_KEY = "iAudioProjects";
 
+// This section handles the add/edit/delete of audio files in a project
 const AudioTimeline = ({ setTab }) => {
   const [projects, setProjects] = useLocalStorage(LOCAL_STORAGE_KEY, []);
   const { playlist, setPlaylist } = useContext(FileContext);

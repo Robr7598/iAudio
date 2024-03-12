@@ -7,6 +7,8 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AudioPlayerBg from "../assets/AudioPlayerBg.jpeg";
 
+// Handles the re-ordering of audio files on the audio timeline
+
 const Card = ({ id, name, index, moveFile }) => {
   const { playlist, setPlaylist } = useContext(FileContext);
   const { currentTrackIndex, setCurrentTrackIndex } =

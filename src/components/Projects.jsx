@@ -11,6 +11,7 @@ import AudioPlayerBg from "../assets/AudioPlayerBg.jpeg";
 
 const LOCAL_STORAGE_KEY = "iAudioProjects";
 
+// Main project list section which displays existing projects and allows us to create new projects
 const Projects = ({ setTab }) => {
   const [projects, setProjects] = useLocalStorage(LOCAL_STORAGE_KEY, []);
   const { playlist, setPlaylist } = useContext(FileContext);

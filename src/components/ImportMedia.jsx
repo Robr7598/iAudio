@@ -8,6 +8,7 @@ import { FileContext } from "../contexts/FileContext";
 
 const uniqueId = () => parseInt(Date.now() * Math.random()).toString();
 
+// Parent file store section of every project, the files here can be re-used.
 const ImportMedia = () => {
   const [fileStore, setFileStore] = useState([]);
   const { playlist, setPlaylist } = useContext(FileContext);

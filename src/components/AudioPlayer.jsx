@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef, useMemo } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { FileContext } from "../contexts/FileContext";
 import { CurrentContext } from "../contexts/CurrentContext";
 import Typography from "@mui/material/Typography";
@@ -8,6 +8,7 @@ import PauseCircleFilledRoundedIcon from "@material-ui/icons/PauseCircleFilledRo
 import SkipPreviousRoundedIcon from "@material-ui/icons/SkipPreviousRounded";
 import SkipNextRoundedIcon from "@material-ui/icons/SkipNextRounded";
 
+// Basic audio player in the media tab with 3 buttons and the current audio name
 const AudioPlayer = () => {
   const { playlist } = useContext(FileContext);
   const { currentTrackIndex, setCurrentTrackIndex } =
